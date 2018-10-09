@@ -2,15 +2,15 @@
     <div class="whatever">
         <h1>TODO List</h1>
         <h4>A place to store the things you have to do!</h4>
-        <input type="text" placeholder="Filter your to-dos" ng-model="$ctrl.text" />
+        <input type="text" placeholder="Filter your to-dos" ng-model="search"/>
         
         <ol>
-            <li ng-repeat="list in $ctrl.toDoList" ng-class = "{completed:list.completed === true}"><button class = "status" type = "submit" ng-If="list.completed === false">Complete</button> {{list.task}}
-                <button class="x">X</button>
+            <li ng-repeat="list in $ctrl.toDoList | filter: search" ng-class = "{completed:list.completed === true}"><button ng-click="$ctrl.completeTask($index)" class = "status" type = "submit" ng-If="list.completed === false">Complete</button> {{list.task}}
+                <button ng-click="$ctrl.removeTask($index)" class="x">X</button>
             </li> 
         </ol>
         
-        <input type="text" placeholder="Add your to do "ng-model="newTask"> 
-        <button class="addition">Add</button>
+        <input type="text" placeholder="Add your to do " ng-model="$ctrl.newChore"> 
+        <button ng-click="$ctrl.addTask()" class="addition">Add</button>
     </div>
 </section>
